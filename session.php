@@ -32,8 +32,6 @@ if (isset($_POST['button'])) {
     if ($_POST['button'] == 'delete') {
         session_destroy();
         echo "session destory";
-    }
-    
+    }   
 }
-
 ?>
