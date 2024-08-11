@@ -3,35 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Download File</title>
 </head>
 <body>
-    <h2>Download file using php:</h2>
-    <a href="download.php?file=image1.jpg">Download</a>
+    <h2>Download file using PHP:</h2>
+    <a href="download.php?file=img.jpeg">Download</a>
 </body>
 </html>
 
 <?php
 
-if(!empty($_GET['file'])){
+if (!empty($_GET['file'])) {
 
     $filename = basename($_GET['file']);
-    $filepath = 'destination/'. $filename;
+    $filepath = 'test/img.jpeg';
 
-    if(!empty($filename) && file_exists($filepath)){
+    if (!empty($filename) && file_exists($filepath)) {
 
-       header('Cache-control: public');
-       header('Content-Description: File Transfer');
-       header('Content-Disposition: attachment; filename=umang');
-       header('Content-Type: application/zip');
-       header('Content-Transfer-Emcoding: binary');
+        header('Cache-Control: public');
+        header('Content-Description: File Transfer');
+        header('Content-Disposition: attachment; filename=' . $filename);
+        header('Content-Type: image/jpeg');  // Assuming it's a JPEG file
+        header('Content-Transfer-Encoding: binary');
 
-       readfile($filepath);
+        readfile($filepath);
+        exit;  // Make sure to exit after sending the file
+    } else {
+        echo "<br>The file doesn't exist.";
     }
+} else {
+    echo "<br>No file specified.";
 }
-else {
-    echo "the file path doesn't exist";
-}
-
 
 ?>
